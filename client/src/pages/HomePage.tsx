@@ -6,7 +6,7 @@ type HealthResponse = {
 
 function HomePage() {
   const [serverStatus, setServerStatus] = useState('Waiting...')
-  const [error, setError] = useState(String)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function checkServerStatus() {

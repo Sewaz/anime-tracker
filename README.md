@@ -1,55 +1,76 @@
-Anime Tracker
+# Anime Tracker
 
 A fullstack application for tracking anime.
 
-# Tech Stack
+## Tech Stack
 
-## Frontend
+### Frontend
 
-React
-TypeScript
-Vite
-Tailwind CSS
-React Router
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
 
-## Backend
+### Backend
 
-Node.js
-Express
-TypeScript
+- Node.js
+- Express
+- TypeScript
 
-## Planned
+### Planned
 
-MongoDB
-User authentication
-Jikan API integration
+- PostgreSQL
+- User authentication
+- Jikan API integration
 
 ## Project Structure
 
-client/ — frontend application
+- `client/` — frontend application
+- `server/` — backend API
 
-server/ — backend API
+## Getting Started
 
-# Getting Started
+1. **Install frontend dependencies**
 
-1. Install frontend dependencies
-cd client
-npm install
+   ```bash
+   cd client
+   npm install
+   ```
 
-2. Install backend dependencies
-cd ../server
-npm install
+2. **Install backend dependencies**
 
-3. Configure environment
-Create server/.env:
-PORT=5000
+   ```bash
+   cd ../server
+   npm install
+   ```
 
-4. Start backend
-From server/: npm run dev
+3. **Configure environment**
 
-5. Start frontend
-From client/: npm run dev
+   Create `server/.env`:
 
-# Available Backend Endpoints
+   ```env
+   PORT=5000
+   ```
 
-GET  /api/health - Backend health check
+4. **Start backend**
+
+   From `server/`:
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Start frontend**
+
+   From `client/`:
+
+   ```bash
+   npm run dev
+   ```
+
+## Available Backend Endpoints
+
+| Endpoint      | Method | Description          |
+| ------------- | ------ | --------------------- |
+| `/api/health` | GET    | Backend health check |
