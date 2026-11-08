@@ -1,23 +1,44 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react'
 
-function HomePage() {
-    useEffect(() => {
-        fetch('/api/health')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Backend response:', data);
-            })
-            .catch((error) => {
-                console.error('Backend error:', error);
-            });
-    }, []);
-
-    return (
-        <div>
-            <h1>Anime Tracker</h1>
-            <p>Search for anime</p>
-        </div>
-    );
+type HealthResponse = {
+  status: string
 }
 
-export default HomePage;
+function HomePage() {
+  const [serverStatus, setServerStatus] = useState('Waiting...')
+  const [error, setError] = useState(String)
+
+  useEffect(() => {
+    async function checkServerStatus() {
+      try {
+        const response = await fetch('/api/health')
+
+        if (!response.ok) {
+          throw new Error('HTTP error: ' + response.status)
+        }
+
+        const data: HealthResponse = await response.json()
+
+        setServerStatus(data.status)
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Unknow error')
+      }
+    }
+
+    checkServerStatus()
+  }, [])
+
+  return (
+    <div>
+      <h1>Anime Tracker</h1>
+
+      <p>Search for anime</p>
+
+      <p>Backend status: {serverStatus}</p>
+
+      {error && <p>Backend error: {error}</p>}
+    </div>
+  )
+}
+
+export default HomePage

@@ -1,9 +1,9 @@
 function MyListPage() {
-    return (
-        <div>
-            <h1>My Anime List</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>My Anime List</h1>
+    </div>
+  )
 }
 
-export default MyListPage;
+export default MyListPage
