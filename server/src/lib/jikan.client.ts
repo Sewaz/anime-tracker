@@ -5,15 +5,13 @@ export async function jikanGet<T>(path: string): Promise<T> {
   const normalizedPath = path.replace(/^\/+/, '')
   const url = new URL(normalizedPath, env.JIKAN_BASE_URL)
 
-  const response: Response = await fetch(url, {
-    signal: AbortSignal.timeout(10_000),
-  }).catch((error) => {
-    console.error('Jikan API request failed:', error)
-    if (error instanceof Error && error.name === 'TimeoutError') {
-      throw new HttpError(504, 'Service unavailable, try again later')
-    }
-    throw new HttpError(502, 'Service unavailable, try again later')
-  })
+  let response: Response
+  try {
+    response = await fetch(url, { signal: AbortSignal.timeout(10_000) })
+  } catch (error) {
+    const status = error instanceof Error && error.name === 'TimeoutError' ? 504 : 502
+    throw new HttpError(status, 'Service unavailable, try again later', { cause: error })
+  }
 
   if (response.status === 404) throw new HttpError(404, 'Not found')
 
@@ -21,8 +19,9 @@ export async function jikanGet<T>(path: string): Promise<T> {
 
   if (!response.ok) throw new HttpError(502, 'Service unavailable, try again later')
 
-  return await response.json().catch((error) => {
-    console.error('Jikan API returned invalid JSON:', error)
-    throw new HttpError(502, 'Service unavailable, try again later')
-  }) as T
+  try {
+    return (await response.json()) as T
+  } catch (error) {
+    throw new HttpError(502, 'Service unavailable, try again later', { cause: error })
+  }
 }
