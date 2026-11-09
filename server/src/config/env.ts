@@ -7,4 +7,5 @@ dotenv.config({
 
 export const env = {
   PORT: Number(process.env.PORT) || 5000,
+  JIKAN_BASE_URL: process.env.JIKAN_BASE_URL ?? 'https://api.jikan.moe/v4/',
 };
