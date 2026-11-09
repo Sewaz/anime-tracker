@@ -9,14 +9,20 @@ export async function jikanGet<T>(path: string): Promise<T> {
     signal: AbortSignal.timeout(10_000),
   }).catch((error) => {
     console.error('Jikan API request failed:', error)
-    throw new HttpError(502, 'Jikan API is unreachable')
+    if (error instanceof Error && error.name === 'TimeoutError') {
+      throw new HttpError(504, 'Service unavailable, try again later')
+    }
+    throw new HttpError(502, 'Service unavailable, try again later')
   })
 
-  if (response.status === 404) throw new HttpError(404, 'Resource not found on Jikan API')
+  if (response.status === 404) throw new HttpError(404, 'Not found')
 
-  if (response.status === 429) throw new HttpError(503, 'Jikan API rate limit exceeded')
+  if (response.status === 429) throw new HttpError(503, 'Service busy, try again later')
 
-  if (!response.ok) throw new HttpError(502, 'Jikan API error')
+  if (!response.ok) throw new HttpError(502, 'Service unavailable, try again later')
 
-  return (await response.json()) as T
+  return await response.json().catch((error) => {
+    console.error('Jikan API returned invalid JSON:', error)
+    throw new HttpError(502, 'Service unavailable, try again later')
+  }) as T
 }

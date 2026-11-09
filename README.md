@@ -72,5 +72,5 @@ A fullstack application for tracking anime.
 ## Available Backend Endpoints
 
 | Endpoint      | Method | Description          |
-| ------------- | ------ | --------------------- |
+| ------------- | ------ | -------------------- |
 | `/api/health` | GET    | Backend health check |
