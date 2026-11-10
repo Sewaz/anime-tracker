@@ -79,3 +79,10 @@ A fullstack application for tracking anime.
 | `/api/anime/:id`             | GET    | Anime details by id               |
 
 Errors are returned as `{ "error": { "message": string } }` with an appropriate 4xx/5xx status.
+
+## Testing
+
+A Postman collection covering happy paths and edge cases (missing/empty query, invalid page,
+invalid/unknown id, unknown route) is available at
+[`server/postman/anime-tracker.postman_collection.json`](server/postman/anime-tracker.postman_collection.json).
+Import it into Postman; it uses a `baseUrl` variable (defaults to `http://localhost:5000`).
