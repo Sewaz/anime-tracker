@@ -17,12 +17,12 @@ A fullstack application for tracking anime.
 - Node.js
 - Express
 - TypeScript
+- Tenrai API integration
 
 ### Planned
 
 - PostgreSQL
 - User authentication
-- Jikan API integration
 
 ## Project Structure
 
@@ -47,10 +47,11 @@ A fullstack application for tracking anime.
 
 3. **Configure environment**
 
-   Create `server/.env`:
+   Create `server/.env` (see `server/.env.example`):
 
    ```env
    PORT=5000
+   TENRAI_BASE_URL=https://api.tenrai.org/v1
    ```
 
 4. **Start backend**
@@ -71,6 +72,17 @@ A fullstack application for tracking anime.
 
 ## Available Backend Endpoints
 
-| Endpoint      | Method | Description          |
-| ------------- | ------ | --------------------- |
-| `/api/health` | GET    | Backend health check |
+| Endpoint                     | Method | Description                       |
+| ---------------------------- | ------ | --------------------------------- |
+| `/api/health`                | GET    | Backend health check              |
+| `/api/anime/search?q=&page=` | GET    | Search anime by title (paginated) |
+| `/api/anime/:id`             | GET    | Anime details by id               |
+
+Errors are returned as `{ "error": { "message": string } }` with an appropriate 4xx/5xx status.
+
+## Testing
+
+A Postman collection covering happy paths and edge cases (missing/empty query, invalid page,
+invalid/unknown id, unknown route) is available at
+[`server/postman/anime-tracker.postman_collection.json`](server/postman/anime-tracker.postman_collection.json).
+Import it into Postman; it uses a `baseUrl` variable (defaults to `http://localhost:5000`).
