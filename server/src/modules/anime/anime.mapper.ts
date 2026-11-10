@@ -1,14 +1,14 @@
-import type { JikanImages, JikanPagination } from '../../lib/jikan.types.js'
+import type { JikanImage, JikanImages, JikanPagination } from '../../lib/jikan.types.js'
 import type { AnimeDetails, AnimeSummary, JikanAnime, Paginated } from './anime.types.js'
 
-function pickImageUrl(images: JikanImages, size: 'image_url' | 'large_image_url'): string | null {
+function pickImageUrl(images: JikanImages, size: keyof JikanImage): string | null {
   return images.webp[size] ?? images.jpg[size] ?? null
 }
 
 export function toAnimeSummary(anime: JikanAnime): AnimeSummary {
   return {
     malId: anime.mal_id,
-    title: anime.title_english ?? anime.title,
+    title: anime.title_english || anime.title,
     season: anime.season,
     year: anime.year,
     imageUrl: pickImageUrl(anime.images, 'image_url'),
