@@ -17,7 +17,10 @@ export async function tenraiGet<T>(path: string): Promise<T> {
 
   if (response.status === 429) throw new HttpError(503, 'Service busy, try again later')
 
-  if (!response.ok) throw new HttpError(502, 'Service unavailable, try again later')
+  if (!response.ok) {
+    console.error(`Tenrai responded with ${response.status} ${response.statusText}`)
+    throw new HttpError(502, 'Service unavailable, try again later')
+  }
 
   try {
     return (await response.json()) as T
