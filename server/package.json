@@ -2,7 +2,6 @@
   "name": "server",
   "type": "module",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
@@ -24,7 +23,6 @@
     "@types/node": "^26.6.6",
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
-    "nodemon": "^3.1.14",
     "tsx": "^4.23.15",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.72.1"
