@@ -53,7 +53,7 @@ export interface AnimeDetails extends AnimeSummary {
   studios: string[]
   producers: string[]
   duration: string
-  rating: string | null
+  ageRating: string | null
 }
 
 export interface Paginated<T> {

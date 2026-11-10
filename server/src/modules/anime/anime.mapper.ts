@@ -16,7 +16,7 @@ export function toAnimeSummary(anime: JikanAnime): AnimeSummary {
     episodes: anime.episodes,
     score: anime.score,
     scoredBy: anime.scored_by,
-    status: anime.status
+    status: anime.status,
   }
 }
 
@@ -29,17 +29,17 @@ export function toAnimeDetails(anime: JikanAnime): AnimeDetails {
     studios: anime.studios.map((studio) => studio.name),
     producers: anime.producers.map((producer) => producer.name),
     duration: anime.duration,
-    rating: anime.rating
+    ageRating: anime.rating,
   }
 }
 
-export function toPagination<T>(data: T[], pagination: JikanPagination): Paginated<T> {
+export function toPaginated<T>(data: T[], pagination: JikanPagination): Paginated<T> {
   return {
     data,
     pagination: {
       page: pagination.current_page,
       totalPages: pagination.last_visible_page,
-      hasNextPage: pagination.has_next_page
-    }
+      hasNextPage: pagination.has_next_page,
+    },
   }
 }
