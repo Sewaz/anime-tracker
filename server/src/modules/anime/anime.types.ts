@@ -1,4 +1,9 @@
-import type { JikanImages, JikanNamedEntity, JikanPaginatedResponse, JikanResponse } from '../../lib/jikan.types.js'
+import type {
+  JikanImages,
+  JikanNamedEntity,
+  JikanPaginatedResponse,
+  JikanResponse,
+} from '../../lib/jikan.types.js'
 
 // Jikan API v4 anime resource — only the fields this app actually reads.
 // Full schema: https://docs.api.jikan.moe/
