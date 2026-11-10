@@ -1,5 +1,5 @@
-import {Router} from 'express'
-import {getAnimeByIdHandler, searchAnimeHandler} from './anime.controller.js'
+import { Router } from 'express'
+import { getAnimeByIdHandler, searchAnimeHandler } from './anime.controller.js'
 
 const router = Router()
 
