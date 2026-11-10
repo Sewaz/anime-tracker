@@ -2,6 +2,22 @@
 // (anime, manga, characters, ...), not just anime.
 // Full schema: https://docs.api.jikan.moe/
 
+export interface JikanImage {
+  image_url: string | null
+  small_image_url: string | null
+  large_image_url: string | null
+}
+
+export interface JikanImages {
+  jpg: JikanImage
+  webp: JikanImage
+}
+
+export interface JikanNamedEntity {
+  mal_id: number
+  name: string
+}
+
 export interface JikanResponse<T> {
   data: T
 }

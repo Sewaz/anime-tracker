@@ -1,23 +1,7 @@
-import type { JikanPaginatedResponse, JikanResponse } from '../../lib/jikan.types.js'
+import type { JikanImages, JikanNamedEntity, JikanPaginatedResponse, JikanResponse } from '../../lib/jikan.types.js'
 
 // Jikan API v4 anime resource — only the fields this app actually reads.
 // Full schema: https://docs.api.jikan.moe/
-
-export interface JikanImage {
-  image_url: string | null
-  small_image_url: string | null
-  large_image_url: string | null
-}
-
-export interface JikanImages {
-  jpg: JikanImage
-  webp: JikanImage
-}
-
-export interface JikanNamedEntity {
-  mal_id: number
-  name: string
-}
 
 export interface JikanAnime {
   mal_id: number
@@ -31,7 +15,7 @@ export interface JikanAnime {
   year: number | null
   rating: string | null
   score: number | null
-  scoredBy: number | null
+  scored_by: number | null
   synopsis: string | null
   duration: string
   producers: JikanNamedEntity[]
@@ -62,6 +46,7 @@ export interface AnimeDetails extends AnimeSummary {
   synopsis: string | null
   genres: string[]
   studios: string[]
+  producers: string[]
   duration: string
   rating: string | null
 }
