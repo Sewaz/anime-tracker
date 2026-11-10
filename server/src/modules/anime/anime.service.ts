@@ -1,4 +1,5 @@
 import { jikanGet } from '../../lib/jikan.client.js'
+import { HttpError } from '../../lib/http-error.js'
 import { toAnimeDetails, toAnimeSummary, toPaginated } from './anime.mapper.js'
 import type {
   AnimeDetails,
@@ -22,6 +23,13 @@ export async function searchAnime(q: string, page: number): Promise<Paginated<An
 }
 
 export async function getAnimeById(id: number): Promise<AnimeDetails> {
-  const response = await jikanGet<JikanAnimeResponse>(`anime/${id}`)
-  return toAnimeDetails(response.data)
+  try {
+    const response = await jikanGet<JikanAnimeResponse>(`anime/${id}`)
+    return toAnimeDetails(response.data)
+  } catch (error) {
+    if (error instanceof HttpError && error.status === 404) {
+      throw new HttpError(404, 'Anime not found', { cause: error })
+    }
+    throw error
+  }
 }

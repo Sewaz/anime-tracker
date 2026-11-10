@@ -3,7 +3,7 @@ import { HttpError } from '../../lib/http-error.js'
 
 const searchQuerySchema = z.string().trim().min(1).max(100)
 const pageSchema = z.coerce.number().int().min(1).max(1000).default(1)
-const animeIdSchema = z.coerce.number().int().positive().max(1_000_000)
+const animeIdSchema = z.coerce.number().int().positive()
 
 export function parseSearchQuery(value: unknown): string {
   const result = searchQuerySchema.safeParse(value)
