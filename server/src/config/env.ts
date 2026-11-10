@@ -11,5 +11,5 @@ function withTrailingSlash(url: string): string {
 
 export const env = {
   PORT: Number(process.env.PORT) || 5000,
-  JIKAN_BASE_URL: withTrailingSlash(process.env.JIKAN_BASE_URL ?? 'https://api.jikan.moe/v4/'),
+  TENRAI_BASE_URL: withTrailingSlash(process.env.TENRAI_BASE_URL ?? 'https://api.tenrai.org/v1'),
 }

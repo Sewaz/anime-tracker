@@ -1,11 +1,11 @@
-import type { JikanImage, JikanImages, JikanPagination } from '../../lib/jikan.types.js'
-import type { AnimeDetails, AnimeSummary, JikanAnime, Paginated } from './anime.types.js'
+import type { TenraiImage, TenraiImages, TenraiPagination } from '../../lib/tenrai.types.js'
+import type { AnimeDetails, AnimeSummary, Paginated, TenraiAnime } from './anime.types.js'
 
-function pickImageUrl(images: JikanImages, size: keyof JikanImage): string | null {
+function pickImageUrl(images: TenraiImages, size: keyof TenraiImage): string | null {
   return images.webp[size] ?? images.jpg[size] ?? null
 }
 
-export function toAnimeSummary(anime: JikanAnime): AnimeSummary {
+export function toAnimeSummary(anime: TenraiAnime): AnimeSummary {
   return {
     malId: anime.mal_id,
     title: anime.title_english || anime.title,
@@ -20,7 +20,7 @@ export function toAnimeSummary(anime: JikanAnime): AnimeSummary {
   }
 }
 
-export function toAnimeDetails(anime: JikanAnime): AnimeDetails {
+export function toAnimeDetails(anime: TenraiAnime): AnimeDetails {
   return {
     ...toAnimeSummary(anime),
     largeImageUrl: pickImageUrl(anime.images, 'large_image_url'),
@@ -33,7 +33,7 @@ export function toAnimeDetails(anime: JikanAnime): AnimeDetails {
   }
 }
 
-export function toPaginated<T>(data: T[], pagination: JikanPagination): Paginated<T> {
+export function toPaginated<T>(data: T[], pagination: TenraiPagination): Paginated<T> {
   return {
     data,
     pagination: {

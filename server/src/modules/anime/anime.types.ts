@@ -1,18 +1,17 @@
 import type {
-  JikanImages,
-  JikanNamedEntity,
-  JikanPaginatedResponse,
-  JikanResponse,
-} from '../../lib/jikan.types.js'
+  TenraiImages,
+  TenraiNamedEntity,
+  TenraiPaginatedResponse,
+  TenraiResponse,
+} from '../../lib/tenrai.types.js'
 
-// Jikan API v4 anime resource — only the fields this app actually reads.
-// Full schema: https://docs.api.jikan.moe/
+// Tenrai API anime resource — only the fields this app actually reads.
 
-export interface JikanAnime {
+export interface TenraiAnime {
   mal_id: number
   title: string
   title_english: string | null
-  images: JikanImages
+  images: TenraiImages
   type: string | null
   episodes: number | null
   status: string
@@ -23,13 +22,13 @@ export interface JikanAnime {
   scored_by: number | null
   synopsis: string | null
   duration: string
-  producers: JikanNamedEntity[]
-  studios: JikanNamedEntity[]
-  genres: JikanNamedEntity[]
+  producers: TenraiNamedEntity[]
+  studios: TenraiNamedEntity[]
+  genres: TenraiNamedEntity[]
 }
 
-export type JikanAnimeResponse = JikanResponse<JikanAnime>
-export type JikanAnimeListResponse = JikanPaginatedResponse<JikanAnime>
+export type TenraiAnimeResponse = TenraiResponse<TenraiAnime>
+export type TenraiAnimeListResponse = TenraiPaginatedResponse<TenraiAnime>
 
 // DTOs
 

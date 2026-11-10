@@ -22,7 +22,7 @@ A fullstack application for tracking anime.
 
 - PostgreSQL
 - User authentication
-- Jikan API integration
+- Tenrai API integration
 
 ## Project Structure
 

@@ -1,9 +1,9 @@
 import { env } from '../config/env.js'
 import { HttpError } from './http-error.js'
 
-export async function jikanGet<T>(path: string): Promise<T> {
+export async function tenraiGet<T>(path: string): Promise<T> {
   const normalizedPath = path.replace(/^\/+/, '')
-  const url = new URL(normalizedPath, env.JIKAN_BASE_URL)
+  const url = new URL(normalizedPath, env.TENRAI_BASE_URL)
 
   let response: Response
   try {
