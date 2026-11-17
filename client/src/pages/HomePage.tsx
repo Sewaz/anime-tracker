@@ -29,14 +29,17 @@ function HomePage() {
   }, [])
 
   return (
-    <div>
-      <h1>Anime Tracker</h1>
+    <div className="flex flex-col gap-4 p-8">
+      <h1 className="font-display text-3xl font-bold">Anime Tracker</h1>
 
-      <p>Search for anime</p>
+      <p className="text-muted">Search for anime</p>
 
-      <p>Backend status: {serverStatus}</p>
+      <p className="flex items-center gap-2">
+        Backend status:
+        <span className="bg-info text-bg rounded px-2 py-0.5 text-xs font-bold">{serverStatus}</span>
+      </p>
 
-      {error && <p>Backend error: {error}</p>}
+      {error && <p className="text-danger">Backend error: {error}</p>}
     </div>
   )
 }

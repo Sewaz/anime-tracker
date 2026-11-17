@@ -1,1 +1,63 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *)); /* theme = class on <html> */
+
+:root {
+    --bg: #f6f1e7;
+    --surface: #fffdf8;
+    --surface-2: #efe7da;
+    --border: #d9cdbb;
+    --text: #1e1a16;
+    --muted: #6b5f50;
+    --primary: #b83a24;
+    --on-primary: #ffffff;
+    --secondary: #7e6024;
+    --info: #3d5a8a;
+    --success: #4f6b1f;
+    --danger: #a8264a;
+}
+
+.dark {
+    --bg: #12100e;
+    --surface: #1a1714;
+    --surface-2: #221e1a;
+    --border: #3a332c;
+    --text: #ede4d3;
+    --muted: #a89c88;
+    --primary: #e0533a;
+    --on-primary: #12100e;
+    --secondary: #c9a45c;
+    --info: #7e9cc9;
+    --success: #a9bc74;
+    --danger: #e5566e;
+}
+
+@theme inline {
+    --color-bg: var(--bg);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-border: var(--border);
+    --color-text: var(--text);
+    --color-muted: var(--muted);
+    --color-primary: var(--primary);
+    --color-on-primary: var(--on-primary);
+    --color-secondary: var(--secondary);
+    --color-info: var(--info);
+    --color-success: var(--success);
+    --color-danger: var(--danger);
+
+    --font-display: 'Shippori Mincho', serif;
+    --font-sans: 'Zen Kaku Gothic Antique', system-ui, sans-serif;
+}
+
+@layer base {
+    html,
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+    }
+
+    body {
+        font-family: var(--font-sans);
+    }
+}

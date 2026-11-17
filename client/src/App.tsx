@@ -6,11 +6,15 @@ import MyListPage from './pages/MyListPage'
 
 function App() {
   return (
-    <>
-      <nav>
-        <Link to="/">Home</Link>
-        {' | '}
-        <Link to="/my-list">My List</Link>
+    <div className="bg-bg text-text min-h-screen">
+      <nav className="border-border flex items-center gap-6 border-b px-8 py-4">
+        <span className="font-display text-primary text-xl font-bold">鑑 Anime Tracker</span>
+        <Link to="/" className="text-muted hover:text-text">
+          Home
+        </Link>
+        <Link to="/my-list" className="text-muted hover:text-text">
+          My List
+        </Link>
       </nav>
 
       <Routes>
@@ -18,7 +22,7 @@ function App() {
         <Route path="/anime/:id" element={<AnimePage />} />
         <Route path="/my-list" element={<MyListPage />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
